@@ -1,0 +1,51 @@
+{
+  "name": "hotproxy",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "A better http-proxy-middleware with hot update config and cli",
+  "author": "imcuttle <moyuyc95@gmail.com>",
+  "scripts": {
+    "test": "jest",
+    "prepublishOnly": "npm test",
+    "version": "npm run changelog",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "imcuttle",
+    "hotproxy",
+    "hotproxy"
+  ],
+  "typings": "index.d.ts",
+  "license": "MIT",
+  "repository": "imcuttle/hotproxy",
+  "jest": {
+    "testMatch": [
+      "**/__test{s,}__/*.(spec|test).{t,j}s{x,}"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@types/jest": "^23.3.14",
+    "conventional-changelog-cli": "^2.0.23",
+    "husky": "^3.0.3",
+    "jest": "^23.6.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1"
+  }
+}
