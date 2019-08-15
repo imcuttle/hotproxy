@@ -51,6 +51,8 @@ echo "module.exports = {
 }
 " > hotproxy.config.js
 hotproxy
+
+hotproxy --help
 ```
 
 ## Config
