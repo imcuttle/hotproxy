@@ -1,6 +1,6 @@
 {
   "name": "hotproxy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "description": "A better http-proxy-middleware with hot update config and cli",
   "author": "imcuttle <moyuyc95@gmail.com>",
