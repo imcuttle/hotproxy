@@ -4,6 +4,7 @@
   "main": "index.js",
   "description": "A better http-proxy-middleware with hot update config and cli",
   "author": "imcuttle <moyuyc95@gmail.com>",
+  "bin": "./bin.js",
   "scripts": {
     "test": "jest",
     "prepublishOnly": "npm test",
@@ -43,9 +44,18 @@
     "@commitlint/config-conventional": "^8.1.0",
     "@types/jest": "^23.3.14",
     "conventional-changelog-cli": "^2.0.23",
+    "express": "^4.17.1",
     "husky": "^3.0.3",
     "jest": "^23.6.0",
+    "pify": "^4.0.1",
     "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1"
+    "pretty-quick": "^1.11.1",
+    "supertest": "^4.0.2"
+  },
+  "dependencies": {
+    "find-up": "^4.1.0",
+    "hot-module-require": "^3.0.2",
+    "http-proxy-middleware": "^0.19.1",
+    "optimist": "^0.6.1"
   }
 }
