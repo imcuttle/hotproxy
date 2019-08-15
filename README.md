@@ -19,9 +19,43 @@ yarn add hotproxy
 
 ## Usage
 
+### Package
+
 ```javascript
-const hotproxy = require('hotproxy')
+const app = require('express')()
+const { hotProxy } = require('hotproxy')
+
+const middleware = hotProxy(
+  '/path/to/configFile', // Assign configuration file, It will find up the closest file named `hotproxy.config.js` when not setting.
+  {
+    // common config
+    logLevel: 'debug'
+  }
+)
+
+app.use(middleware)
+// Or
+app.use('/context', middleware)
 ```
+
+### Cli
+
+```bash
+npm i hotproxy -g
+echo "module.exports = {
+  '/': {
+    target: 'https://www.baidu.com',
+    changeOrigin: true,
+    logLevel: 'debug'
+  }
+}
+" > hotproxy.config.js
+hotproxy
+```
+
+## Config
+
+See [Webpack Dev Server Proxy](https://webpack.js.org/configuration/dev-server/#devserverproxy)
 
 ## Contributing
 

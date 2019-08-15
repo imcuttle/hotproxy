@@ -7,7 +7,8 @@
 
 module.exports = {
   '/': {
-    target: 'http://localhost:9988/',
+    target: 'https://www.baidu.com',
+    changeOrigin: true,
     logLevel: 'debug'
   }
 }
