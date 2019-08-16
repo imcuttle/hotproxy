@@ -6,6 +6,11 @@
  */
 
 module.exports = {
+  '/app/list': {
+    target: 'http://doc.eux.baidu.com/app/list',
+    changeOrigin: true,
+    logLevel: 'debug'
+  },
   '/': {
     target: 'https://www.baidu.com',
     changeOrigin: true,

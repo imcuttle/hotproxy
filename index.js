@@ -2,6 +2,8 @@
  * A better http-proxy-middleware with hot update config and cli
  * @author imcuttle
  */
+const nps = require('path')
+const fs = require('fs')
 const findUp = require('find-up')
 const proxy = require('http-proxy-middleware')
 const hotModuleRequire = require('hot-module-require')(__dirname)
@@ -13,6 +15,8 @@ function hotProxy(configFile, commonConfig) {
   if (!configFile) {
     throw new Error(`hotproxy config file is not found.`)
   }
+  const resolvedConfigFile = nps.resolve(configFile)
+  configFile = fs.existsSync(resolvedConfigFile) ? resolvedConfigFile : configFile
   const moduleGetter = hotModuleRequire(require.resolve(configFile))
 
   return Object.assign(
