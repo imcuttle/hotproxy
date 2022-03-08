@@ -29,22 +29,31 @@ function hotProxy(configFile, commonConfig) {
 
 function createMiddleware(configs, commonConfig) {
   return function(req, res, next) {
-    configs = normalizeConfig(configs)
-    if (!configs) {
-      return next && next()
-    }
-    const middlewareList = configs.map(config => {
-      config = Object.assign({}, commonConfig, config)
-      const clonedConfig = Object.assign({}, config)
-      delete clonedConfig.context
-
-      if (!config.context) {
-        return proxy(config).bind(this, req, res)
+    const handleConfigs = configs => {
+      configs = normalizeConfig(configs)
+      if (!configs) {
+        return next && next()
       }
-      return proxy(config.context, clonedConfig).bind(this, req, res)
-    })
+      const middlewareList = configs.map(config => {
+        config = Object.assign({}, commonConfig, config)
+        const clonedConfig = Object.assign({}, config)
+        delete clonedConfig.context
 
-    return runTasks(middlewareList, next)
+        if (!config.context) {
+          return proxy(config).bind(this, req, res)
+        }
+        return proxy(config.context, clonedConfig).bind(this, req, res)
+      })
+
+      return runTasks(middlewareList, next)
+    }
+
+    if (configs && typeof configs.then === 'function' && typeof configs.catch === 'function') {
+      return Promise.resolve(configs).then(configs => {
+        return handleConfigs(configs)
+      })
+    }
+    return handleConfigs(configs)
   }
 }
 

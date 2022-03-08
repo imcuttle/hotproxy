@@ -19,6 +19,8 @@ remoteApp.get('/user/:name', (req, res) => res.end(req.params.name))
 const port = 16789
 let server
 
+const delay = async ms => new Promise(res => setTimeout(res, ms))
+
 describe('hotproxy', function() {
   beforeAll(() => {
     server = http.createServer(remoteApp)
@@ -53,14 +55,17 @@ describe('hotproxy', function() {
 
   it('should createMiddleware2', function(done) {
     const middle = createMiddleware(
-      {
-        '/api-b|/api-a': {
-          target: `http://localhost:${port}/user`,
-          pathRewrite: {
-            '^/api-b': '/'
+      Promise.resolve().then(async () => {
+        await delay(1000)
+        return {
+          '/api-b|/api-a': {
+            target: `http://localhost:${port}/user`,
+            pathRewrite: {
+              '^/api-b': '/'
+            }
           }
         }
-      },
+      }),
       { logLevel: 'debug' }
     )
 

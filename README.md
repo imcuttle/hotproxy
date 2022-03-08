@@ -57,7 +57,7 @@ hotproxy --help
 
 ## Config
 
-See [Webpack Dev Server Proxy](https://webpack.js.org/configuration/dev-server/#devserverproxy)
+See [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware/tree/v0.21.0#http-proxy-middleware-options)
 
 ## Contributing
 
